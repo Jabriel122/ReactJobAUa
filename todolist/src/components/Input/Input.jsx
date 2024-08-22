@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IoIosSearch } from "react-icons/io";
 import './Input.css'
 
@@ -13,19 +13,26 @@ export const Input = ({ placeholder, value }) => {
     );
 };
 
-export const InputDescription = ({ placeholder, value }) => {
+export const InputDescription = ({ placeholder, value, onChange, key }) => {
     return (
 
-        <input className="inputModal-style" value={value} placeholder={placeholder} />
+        <input className="inputModal-style" key={key} value={value} placeholder={placeholder} onChange={onChange} />
 
     )
 }
 
 
-export const CheckBox = ({ type, name }) => {
+export const CheckBox = ({ handleChange, checked, type, name }) => {
+
+    const [isChacked, setIsChacked] = useState(checked);
+
+    const CheckedChange = () => {
+        setIsChacked(!isChacked);
+        handleChange(!isChacked);
+    }
     return (
-        <label class="container"> Nome
-            <input type="checkbox" />
+        <label class={`container`}> {name}
+            <input onChange={CheckedChange} type="checkbox" />
             <span class="checkmark"></span>
         </label>
 

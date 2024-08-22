@@ -22,10 +22,18 @@ export const ButtonEdit = () =>{
     )
 }
 
-export const ButtonDelete = () => {
+export const ButtonDelete = ({item, toDoList, SetToDoList}) => {
     return(
 
-        <button className="tinyButton">
+        <button onClick={() => {
+            let list = toDoList.filter((element)=>{
+                return element.id !== item.id
+            });
+
+            SetToDoList([
+                ...list
+            ])
+        } } className="tinyButton">
             X
         </button>
 
